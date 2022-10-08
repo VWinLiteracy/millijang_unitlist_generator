@@ -32,10 +32,12 @@ def main():
         idol_dict = yaml.safe_load(yml)
     with codecs.open("millijang_idol_song/song.yml", "r", "utf-8") as yml:
         song_list = yaml.safe_load(yml)
+    with codecs.open("millijang_idol_song/team.yml", "r", "utf-8") as yml:
+        team_list = yaml.safe_load(yml)
     filterd_song_list = unitfilter.filter(song_list)
     unit_dict = generate_unit_dict(filterd_song_list, idol_dict)
     duo_graph.generate(idol_dict, unit_dict, f'duo_{date_str}')
-    unit_list.generate(idol_dict, unit_dict, f'unit_{date_str}')
+    unit_list.generate(idol_dict, unit_dict, team_list, f'unit_{date_str}')
 
 if __name__ == '__main__':
     main()
