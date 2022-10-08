@@ -9,11 +9,14 @@ from reportlab.lib import colors
 
 A4_HEIGHT = 297*mm
 A4_WIDTH = 210*mm
-IDOL_NAME_SIZE = 4*mm
+IDOL_NAME_SIZE = 6*mm
 ROW_SIZE = 6*mm
-INTERVAL_SIZE = 6*mm
-MERGIN_LEFT_SIZE = 10*mm
-MERGIN_VERTICAL_SIZE = 10*mm
+INTERVAL_SIZE = 3*mm
+MERGIN_LEFT_SIZE = 2*mm
+MERGIN_VERTICAL_SIZE = 2*mm
+
+DEFAULT_FONTSIZE = 11
+
 MEMBER_MAX = 6
 
 def generate_list_by_idol(idol, idol_dict, unit_dict):
@@ -60,15 +63,32 @@ def generate_list_by_idol(idol, idol_dict, unit_dict):
             list_by_idol[-1].append(note)
     return list_by_idol
 
+def new_page(page, idol_list, idol_in_page):
+    for idx in range(len(idol_list)):
+        rect_width = 18*mm
+        rect_icon = 3*mm
+        rect_left = A4_WIDTH - rect_width - rect_icon
+        rect_height = A4_HEIGHT / 52
+        rect_bottom = A4_HEIGHT - rect_height * (idx + 1)
+        page.rect(rect_left, rect_bottom, rect_width, rect_height)
+        page.rect(rect_left + rect_width, rect_bottom, rect_icon, rect_height, fill=1 if idol_list[idx] in idol_in_page else 0)
+        page.drawCentredString(rect_left + rect_width / 2, rect_bottom + 1*mm, idol_list[idx])
+        page.linkAbsolute(idol_list[idx], idol_list[idx], (rect_left, rect_bottom, A4_WIDTH, rect_bottom + rect_height))
+    page.showPage()
+    idol_in_page = []
+    return idol_in_page
+
 def generate(idol_dict, unit_dict, filename):
     filename = f"output/{filename}.pdf"
     page = canvas.Canvas(filename, pagesize=portrait(A4))
 
     pdfmetrics.registerFont(UnicodeCIDFont('HeiseiKakuGo-W5'))
-    page.setFont('HeiseiKakuGo-W5', 12)
+    page.setFont('HeiseiKakuGo-W5', DEFAULT_FONTSIZE)
     height_top = MERGIN_VERTICAL_SIZE
-
-    for idol in idol_dict:
+    idol_in_page = []
+    idol_list = list(idol_dict.keys())
+        
+    for idol in idol_list:
         list_by_idol = generate_list_by_idol(idol, idol_dict, unit_dict)
         list_by_idol = [['[ユニット名]代表曲'] + ['メンバー'] * (MEMBER_MAX - 1) + ['ミリシタ実装/収録CD']] + list_by_idol
         table = Table(
@@ -89,13 +109,16 @@ def generate(idol_dict, unit_dict, filename):
         table.setStyle(style)
         height_bottom = height_top + IDOL_NAME_SIZE + len(list_by_idol) * ROW_SIZE
         if height_bottom + MERGIN_VERTICAL_SIZE > A4_HEIGHT:
-            page.showPage()
-            page.setFont('HeiseiKakuGo-W5', 12)
+            idol_in_page = new_page(page, idol_list, idol_in_page)
+            page.setFont('HeiseiKakuGo-W5', DEFAULT_FONTSIZE)
             height_top = MERGIN_VERTICAL_SIZE
             height_bottom = height_top + IDOL_NAME_SIZE + len(list_by_idol) * ROW_SIZE
-        page.drawString(MERGIN_LEFT_SIZE, A4_HEIGHT - height_top - IDOL_NAME_SIZE * 0.5, idol)
+        page.drawString(MERGIN_LEFT_SIZE, A4_HEIGHT - height_top - IDOL_NAME_SIZE + 2*mm, idol)
+        page.bookmarkPage(idol, fit='FitH', top=A4_HEIGHT - height_top)
         table.wrapOn(page, MERGIN_LEFT_SIZE, A4_HEIGHT - height_bottom)
         table.drawOn(page, MERGIN_LEFT_SIZE, A4_HEIGHT - height_bottom)
+        idol_in_page.append(idol)
         
         height_top = height_bottom + INTERVAL_SIZE
+    idol_in_page = new_page(page, idol_list, idol_in_page)
     page.save()
