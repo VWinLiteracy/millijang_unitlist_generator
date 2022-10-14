@@ -1,6 +1,6 @@
 import codecs
 import yaml
-import datetime
+import argparse
 
 import unitfilter
 import duo_graph
@@ -26,18 +26,23 @@ def generate_unit_dict(song_list, idol_dict):
             unit_dict[song['member_bin']] = [song]
     return unit_dict
 
-def main():
-    date_str = datetime.date.today().strftime('%y%m%d')
-    with codecs.open("millijang_idol_song/idol.yml", "r", "utf-8") as yml:
+def main(args):
+    if args.suffix is None:
+        suffix = ''
+    else:
+        suffix = f'_{args.suffix}'
+    with codecs.open('millijang_idol_song/idol.yml', 'r', 'utf-8') as yml:
         idol_dict = yaml.safe_load(yml)
-    with codecs.open("millijang_idol_song/song.yml", "r", "utf-8") as yml:
+    with codecs.open('millijang_idol_song/song.yml', 'r', 'utf-8') as yml:
         song_list = yaml.safe_load(yml)
-    with codecs.open("millijang_idol_song/team.yml", "r", "utf-8") as yml:
+    with codecs.open('millijang_idol_song/team.yml', 'r', 'utf-8') as yml:
         team_list = yaml.safe_load(yml)
     filterd_song_list = unitfilter.filter(song_list)
     unit_dict = generate_unit_dict(filterd_song_list, idol_dict)
-    duo_graph.generate(idol_dict, unit_dict, f'duo_{date_str}')
-    unit_list.generate(idol_dict, unit_dict, team_list, f'unit_{date_str}')
+    duo_graph.generate(idol_dict, unit_dict, f'duo{suffix}')
+    unit_list.generate(idol_dict, unit_dict, team_list, f'unit{suffix}')
 
 if __name__ == '__main__':
-    main()
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-s', '--suffix', help='出力ファイル名の接尾語')
+    main(parser.parse_args())
