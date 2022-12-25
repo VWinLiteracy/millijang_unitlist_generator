@@ -78,8 +78,8 @@ def new_page(page, idol_list, idol_in_page):
     idol_in_page = []
     return idol_in_page
 
-def generate(idol_dict, unit_dict, team_list, filename):
-    filename = f"output/{filename}.pdf"
+def generate(idol_dict, unit_dict, team_list, option={}):
+    filename = f"output/{option.get('filename', 'unit')}.pdf"
     page = canvas.Canvas(filename, pagesize=portrait(A4))
 
     pdfmetrics.registerFont(UnicodeCIDFont('HeiseiKakuGo-W5'))
@@ -97,7 +97,7 @@ def generate(idol_dict, unit_dict, team_list, filename):
                 if len(team['member']) != 13:
                     continue
                 list_by_idol.append([
-                    f"[{team['team']}]{team['song']}",
+                    f"[{team['team']}]{team.get('song', '')}",
                     team['member'][0],
                     team['member'][1],
                     team['member'][2],

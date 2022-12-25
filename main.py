@@ -39,10 +39,35 @@ def main(args):
         team_list = yaml.safe_load(yml)
     filterd_song_list = unitfilter.filter(song_list)
     unit_dict = generate_unit_dict(filterd_song_list, idol_dict)
-    duo_graph.generate(idol_dict, unit_dict, f'duo{suffix}')
-    unit_list.generate(idol_dict, unit_dict, team_list, f'unit{suffix}')
+    duo_option = {
+        'filename': f'duo{suffix}', 
+        'engine': 'dot',
+        'graph_attr': 
+            {
+                'rankdir': 'LR',
+                'overlap': 'false',
+                'splines': 'true',
+            },
+        'weight': {2: 100, 3: 1, 4: 1, 5: 1, 6: 1},
+        'threshold': {'black': 100, 'orange': 101, 'red': 999},
+        'label': True}
+    duo_graph.generate(idol_dict, unit_dict, duo_option)
+    kiteru_option = {
+        'filename': f'kiteru{suffix}',
+        'engine': 'fdp',
+        'graph_attr': 
+            {
+                'overlap': 'false',
+                'splines': 'true',
+            },
+        'weight': {2: 13, 3: 6, 4: 5, 5: 4, 6: 3},
+        'threshold': {'black': 12, 'orange': 17, 'red': 19}}
+    duo_graph.generate(idol_dict, unit_dict, kiteru_option)
+    unit_option = {'filename': f'unit{suffix}'}
+    unit_list.generate(idol_dict, unit_dict, team_list, unit_option)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('-s', '--suffix', help='出力ファイル名の接尾語')
+    parser.add_argument('-e', '--engine', help='Graphvizのエンジン')
     main(parser.parse_args())
