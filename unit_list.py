@@ -53,12 +53,12 @@ def generate_list_by_idol(idol, idol_dict, unit_dict):
             note = ''
             if 'mltd' in song:
                 if 'event' in song['mltd']:
-                    note += f"{song['mltd']['event']}"
-                    note = re.sub('～.+～', '', note)
+                    note = f"{song['mltd']['event']}"
+                    note = re.sub(r'(プラチナスター[^\s～]+).+', r'\1', note)
                 if 'date' in song['mltd']:
                     note += f"({song['mltd']['date']})"
             elif 'release' in song:
-                note += f"(CD){song['release'].get('disc', '')}"
+                note = f"(CD){song['release'].get('disc', '')}"
                 note = re.sub('THE IDOLM@STER (MILLION LIVE!)?', '', note)
             list_by_idol[-1].append(note)
     return list_by_idol
