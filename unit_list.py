@@ -19,7 +19,7 @@ DEFAULT_FONTSIZE = 11
 
 MEMBER_MAX = 6
 
-def generate_list_by_idol(idol, idol_dict, unit_dict):
+def generate_list_by_idol(idol, idol_dict, unit_dict) -> list:
     list_by_idol = []
     for unit_bin in unit_dict:
         if idol in unit_dict[unit_bin][0]['member']:
@@ -61,7 +61,15 @@ def generate_list_by_idol(idol, idol_dict, unit_dict):
                 note = f"(CD){song['release'].get('disc', '')}"
                 note = re.sub('THE IDOLM@STER (MILLION LIVE!)?', '', note)
             list_by_idol[-1].append(note)
-    return list_by_idol
+            default_date = '2099.12.31'
+            date = min(
+                default_date, 
+                song.get('mltd', {}).get('date', default_date), 
+                song.get('release', {}).get('date', default_date))
+            list_by_idol[-1].append(date)
+    sorted_list = sorted(list_by_idol, key=lambda x: x[-1])
+    result = list(map(lambda x: x[:-1], sorted_list))
+    return result
 
 def new_page(page, idol_list, idol_in_page):
     for idx in range(len(idol_list)):
@@ -90,13 +98,11 @@ def generate(idol_dict, unit_dict, team_list, option={}):
         
     for idol in idol_list:
         if idol == '13人':
-            list_by_idol = [['[チーム名]代表曲'] + ['メンバー'] * 7]
-            # list_by_idol = [[
-            #     ['[チーム名]代表曲'] + ['メンバー'] * 7], [[''] * 8]]
+            table_contents = [['[チーム名]代表曲'] + ['メンバー'] * 7]
             for team in team_list:
                 if len(team['member']) != 13:
                     continue
-                list_by_idol.append([
+                table_contents.append([
                     f"[{team['team']}]{team.get('song', '')}",
                     team['member'][0],
                     team['member'][1],
@@ -105,7 +111,7 @@ def generate(idol_dict, unit_dict, team_list, option={}):
                     team['member'][4],
                     team['member'][5],
                     team['member'][6],])
-                list_by_idol.append([
+                table_contents.append([
                     '',
                     team['member'][7],
                     team['member'][8],
@@ -115,7 +121,7 @@ def generate(idol_dict, unit_dict, team_list, option={}):
                     team['member'][12],
                     '',])
             table = Table(
-                list_by_idol, 
+                table_contents, 
                 rowHeights=6*mm)
             style = TableStyle([
                 ('FONT', (0, 0), (-1, -1), 'HeiseiKakuGo-W5', 8),
@@ -124,7 +130,7 @@ def generate(idol_dict, unit_dict, team_list, option={}):
                 ('LINEAFTER', (0, 0), (0, -1), 1, colors.black),
                 ])
             i = 1
-            while i < len(list_by_idol):
+            while i < len(table_contents):
                 style.add('VALIGN', (0, i), (0, i + 1), 'MIDDLE')
                 style.add('SPAN', (0, i), (0, i + 1))
                 style.add('INNERGRID', (1, i), (-1, i + 1), 0.1, colors.black)
@@ -134,9 +140,9 @@ def generate(idol_dict, unit_dict, team_list, option={}):
             style.add('LINEBELOW', (0, 0), (-1, 0), 1, colors.white)
         else:
             list_by_idol = generate_list_by_idol(idol, idol_dict, unit_dict)
-            list_by_idol = [['[ユニット名]代表曲'] + ['メンバー'] * (MEMBER_MAX - 1) + ['ミリシタ実装/収録CD']] + list_by_idol
+            table_contents = [['[ユニット名]代表曲'] + ['メンバー'] * (MEMBER_MAX - 1) + ['ミリシタ実装/収録CD']] + list_by_idol
             table = Table(
-                list_by_idol, 
+                table_contents, 
                 rowHeights=6*mm)
             style = TableStyle([
                 ('FONT', (0, 0), (-1, -1), 'HeiseiKakuGo-W5', 8),
@@ -147,23 +153,33 @@ def generate(idol_dict, unit_dict, team_list, option={}):
                 ('LINEBELOW', (0, 0), (-1, 0), 2, colors.black),
                 ('LINEBELOW', (0, 0), (-1, 0), 1, colors.white),
                 ])
-            for row in list_by_idol:
-                i = list_by_idol.index(row)
+            for row in table_contents:
+                i = table_contents.index(row)
                 style.add('INNERGRID', (1, i), (MEMBER_MAX - 1, i), 0.1, colors.black)
                 style.add('LINEBELOW', (0, i), (-1, i), 1, colors.black)
-                if len(row[0]) > 27:
-                    i = list_by_idol.index(row)
-                    style.add('FONT', (0, i), (0, i), 'HeiseiKakuGo-W5', 6)
-            style.add('FONT', (MEMBER_MAX, 1), (MEMBER_MAX, -1), 'HeiseiKakuGo-W5', 6)
+                song_size: int = 8
+                if len(row[0]) >= 15:
+                    song_size = 7
+                if len(row[0]) >= 25:
+                    song_size = 6
+                if len(row[0]) >= 35:
+                    song_size = 5
+                style.add('FONT', (0, i), (0, i), 'HeiseiKakuGo-W5', song_size)
+                release_size: int = 6
+                if len(row[MEMBER_MAX]) >= 25:
+                    release_size = 5
+                if len(row[MEMBER_MAX]) >= 45:
+                    release_size = 4
+                style.add('FONT', (MEMBER_MAX, i), (MEMBER_MAX, i), 'HeiseiKakuGo-W5', release_size)
             style.add('LINEBELOW', (0, 0), (-1, 0), 2, colors.black)
             style.add('LINEBELOW', (0, 0), (-1, 0), 1, colors.white)
         table.setStyle(style)
-        height_bottom = height_top + IDOL_NAME_SIZE + len(list_by_idol) * ROW_SIZE
+        height_bottom = height_top + IDOL_NAME_SIZE + len(table_contents) * ROW_SIZE
         if height_bottom + MERGIN_VERTICAL_SIZE > A4_HEIGHT:
             idol_in_page = new_page(page, idol_list, idol_in_page)
             page.setFont('HeiseiKakuGo-W5', DEFAULT_FONTSIZE)
             height_top = MERGIN_VERTICAL_SIZE
-            height_bottom = height_top + IDOL_NAME_SIZE + len(list_by_idol) * ROW_SIZE
+            height_bottom = height_top + IDOL_NAME_SIZE + len(table_contents) * ROW_SIZE
         if idol == '13人':
             page.drawString(MERGIN_LEFT_SIZE, A4_HEIGHT - height_top - IDOL_NAME_SIZE + 2*mm, '13人ライブ')
         else:

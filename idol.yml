@@ -1,0 +1,467 @@
+春香:
+  id: 1
+  shortname: 春香
+  fullname: 天海春香
+  belong: All Stars
+  type: Princess Stars
+  planet: Starlight Melody
+  season: Lovers Heart
+
+千早:
+  id: 2
+  shortname: 千早
+  fullname: 如月千早
+  belong: All Stars
+  type: Fairy Stars
+  planet: BlueMoon Harmony
+  season: Lovers Heart
+
+美希:
+  id: 3
+  shortname: 美希
+  fullname: 星井美希
+  belong: All Stars
+  type: Angel Stars
+  planet: Sunshine Rhythm
+  season: Shade of Spade
+
+雪歩:
+  id: 4
+  shortname: 雪歩
+  fullname: 萩原雪歩
+  belong: All Stars
+  type: Princess Stars
+  planet: Starlight Melody
+  season: Bright Diamond
+
+やよい:
+  id: 5
+  shortname: やよい
+  fullname: 高槻やよい
+  belong: All Stars
+  type: Angel Stars
+  planet: Sunshine Rhythm
+  season: Lovers Heart
+
+真:
+  id: 6
+  shortname: 真
+  fullname: 菊地真
+  belong: All Stars
+  type: Princess Stars
+  planet: BlueMoon Harmony
+  season: Clever Clover
+
+伊織:
+  id: 7
+  shortname: 伊織
+  fullname: 水瀬伊織
+  belong: All Stars
+  type: Fairy Stars
+  planet: Starlight Melody
+  season: Bright Diamond
+
+貴音:
+  id: 8
+  shortname: 貴音
+  fullname: 四条貴音
+  belong: All Stars
+  type: Fairy Stars
+  planet: Starlight Melody
+  season: Bright Diamond
+
+律子:
+  id: 9
+  shortname: 律子
+  fullname: 秋月律子
+  belong: All Stars
+  type: Fairy Stars
+  planet: Sunshine Rhythm
+  season: Clever Clover
+
+あずさ:
+  id: 10
+  shortname: あずさ
+  fullname: 三浦あずさ
+  belong: All Stars
+  type: Angel Stars
+  planet: BlueMoon Harmony
+  season: Clever Clover
+
+亜美:
+  id: 11
+  shortname: 亜美
+  fullname: 双海亜美
+  belong: All Stars
+  type: Angel Stars
+  planet: Sunshine Rhythm
+  season: Shade of Spade
+
+真美:
+  id: 12
+  shortname: 真美
+  fullname: 双海真美
+  belong: All Stars
+  type: Angel Stars
+  planet: Sunshine Rhythm
+  season: Bright Diamond
+
+響:
+  id: 13
+  shortname: 響
+  fullname: 我那覇響
+  belong: All Stars
+  type: Princess Stars
+  planet: BlueMoon Harmony
+  season: Shade of Spade
+
+未来:
+  id: 14
+  shortname: 未来
+  fullname: 春日未来
+  belong: Million Stars
+  type: Princess Stars
+  planet: Starlight Melody
+  season: Bright Diamond
+
+静香:
+  id: 15
+  shortname: 静香
+  fullname: 最上静香
+  belong: Million Stars
+  type: Fairy Stars
+  planet: BlueMoon Harmony
+  season: Shade of Spade
+
+翼:
+  id: 16
+  shortname: 翼
+  fullname: 伊吹翼
+  belong: Million Stars
+  type: Angel Stars
+  planet: Sunshine Rhythm
+  season: Bright Diamond
+
+琴葉:
+  id: 17
+  shortname: 琴葉
+  fullname: 田中琴葉
+  belong: Million Stars
+  type: Princess Stars
+  planet: Starlight Melody
+  season: Bright Diamond
+
+エレナ:
+  id: 18
+  shortname: エレナ
+  fullname: 島原エレナ
+  belong: Million Stars
+  type: Angel Stars
+  planet: Sunshine Rhythm
+  season: Clever Clover
+
+美奈子:
+  id: 19
+  shortname: 美奈子
+  fullname: 佐竹美奈子
+  belong: Million Stars
+  type: Princess Stars
+  planet: Sunshine Rhythm
+  season: Lovers Heart
+
+恵美:
+  id: 20
+  shortname: 恵美
+  fullname: 所恵美
+  belong: Million Stars
+  type: Fairy Stars
+  planet: BlueMoon Harmony
+  season: Bright Diamond
+
+まつり:
+  id: 21
+  shortname: まつり
+  fullname: 徳川まつり
+  belong: Million Stars
+  type: Princess Stars
+  planet: Starlight Melody
+  season: Bright Diamond
+
+星梨花:
+  id: 22
+  shortname: 星梨花
+  fullname: 箱崎星梨花
+  belong: Million Stars
+  type: Angel Stars
+  planet: Starlight Melody
+  season: Clever Clover
+
+茜:
+  id: 23
+  shortname: 茜
+  fullname: 野々原茜
+  belong: Million Stars
+  type: Angel Stars
+  planet: Starlight Melody
+  season: Shade of Spade
+
+杏奈:
+  id: 24
+  shortname: 杏奈
+  fullname: 望月杏奈
+  belong: Million Stars
+  type: Angel Stars
+  planet: Sunshine Rhythm
+  season: Lovers Heart
+
+ロコ:
+  id: 25
+  shortname: ロコ
+  fullname: ロコ
+  belong: Million Stars
+  type: Fairy Stars
+  planet: Sunshine Rhythm
+  season: Clever Clover
+
+百合子:
+  id: 26
+  shortname: 百合子
+  fullname: 七尾百合子
+  belong: Million Stars
+  type: Princess Stars
+  planet: BlueMoon Harmony
+  season: Lovers Heart
+
+紗代子:
+  id: 27
+  shortname: 紗代子
+  fullname: 高山紗代子
+  belong: Million Stars
+  type: Princess Stars
+  planet: BlueMoon Harmony
+  season: Lovers Heart
+
+亜利沙:
+  id: 28
+  shortname: 亜利沙
+  fullname: 松田亜利沙
+  belong: Million Stars
+  type: Princess Stars
+  planet: Starlight Melody
+  season: Lovers Heart
+
+海美:
+  id: 29
+  shortname: 海美
+  fullname: 高坂海美
+  belong: Million Stars
+  type: Princess Stars
+  planet: Starlight Melody
+  season: Clever Clover
+
+育:
+  id: 30
+  shortname: 育
+  fullname: 中谷育
+  belong: Million Stars
+  type: Princess Stars
+  planet: Sunshine Rhythm
+  season: Shade of Spade
+
+朋花:
+  id: 31
+  shortname: 朋花
+  fullname: 天空橋朋花
+  belong: Million Stars
+  type: Fairy Stars
+  planet: BlueMoon Harmony
+  season: Lovers Heart
+
+エミリー:
+  id: 32
+  shortname: エミリー
+  fullname: エミリースチュアート
+  belong: Million Stars
+  type: Princess Stars
+  planet: Sunshine Rhythm
+  season: Shade of Spade
+
+志保:
+  id: 33
+  shortname: 志保
+  fullname: 北沢志保
+  belong: Million Stars
+  type: Fairy Stars
+  planet: Starlight Melody
+  season: Shade of Spade
+
+歩:
+  id: 34
+  shortname: 歩
+  fullname: 舞浜歩
+  belong: Million Stars
+  type: Fairy Stars
+  planet: BlueMoon Harmony
+  season: Shade of Spade
+
+ひなた:
+  id: 35
+  shortname: ひなた
+  fullname: 木下ひなた
+  belong: Million Stars
+  type: Angel Stars
+  planet: Sunshine Rhythm
+  season: Clever Clover
+
+可奈:
+  id: 36
+  shortname: 可奈
+  fullname: 矢吹可奈
+  belong: Million Stars
+  type: Princess Stars
+  planet: Sunshine Rhythm
+  season: Lovers Heart
+
+奈緒:
+  id: 37
+  shortname: 奈緒
+  fullname: 横山奈緒
+  belong: Million Stars
+  type: Princess Stars
+  planet: Sunshine Rhythm
+  season: Clever Clover
+
+千鶴:
+  id: 38
+  shortname: 千鶴
+  fullname: 二階堂千鶴
+  belong: Million Stars
+  type: Fairy Stars
+  planet: BlueMoon Harmony
+  season: Clever Clover
+
+このみ:
+  id: 39
+  shortname: このみ
+  fullname: 馬場このみ
+  belong: Million Stars
+  type: Angel Stars
+  planet: Starlight Melody
+  season: Clever Clover
+
+環:
+  id: 40
+  shortname: 環
+  fullname: 大神環
+  belong: Million Stars
+  type: Angel Stars
+  planet: Starlight Melody
+  season: Clever Clover
+
+風花:
+  id: 41
+  shortname: 風花
+  fullname: 豊川風花
+  belong: Million Stars
+  type: Angel Stars
+  planet: Starlight Melody
+  season: Shade of Spade
+
+美也:
+  id: 42
+  shortname: 美也
+  fullname: 宮尾美也
+  belong: Million Stars
+  type: Angel Stars
+  planet: Starlight Melody
+  season: Bright Diamond
+
+のり子:
+  id: 43
+  shortname: のり子
+  fullname: 福田のり子
+  belong: Million Stars
+  type: Princess Stars
+  planet: Sunshine Rhythm
+  season: Lovers Heart
+
+瑞希:
+  id: 44
+  shortname: 瑞希
+  fullname: 真壁瑞希
+  belong: Million Stars
+  type: Fairy Stars
+  planet: BlueMoon Harmony
+  season: Clever Clover
+
+可憐:
+  id: 45
+  shortname: 可憐
+  fullname: 篠宮可憐
+  belong: Million Stars
+  type: Angel Stars
+  planet: BlueMoon Harmony
+  season: Shade of Spade
+
+莉緒:
+  id: 46
+  shortname: 莉緒
+  fullname: 百瀬莉緒
+  belong: Million Stars
+  type: Fairy Stars
+  planet: Sunshine Rhythm
+  season: Bright Diamond
+
+昴:
+  id: 47
+  shortname: 昴
+  fullname: 永吉昴
+  belong: Million Stars
+  type: Fairy Stars
+  planet: BlueMoon Harmony
+  season: Shade of Spade
+
+麗花:
+  id: 48
+  shortname: 麗花
+  fullname: 北上麗花
+  belong: Million Stars
+  type: Angel Stars
+  planet: BlueMoon Harmony
+  season: Lovers Heart
+
+桃子:
+  id: 49
+  shortname: 桃子
+  fullname: 周防桃子
+  belong: Million Stars
+  type: Fairy Stars
+  planet: Starlight Melody
+  season: Bright Diamond
+
+ジュリア:
+  id: 50
+  shortname: ジュリア
+  fullname: ジュリア
+  belong: Million Stars
+  type: Fairy Stars
+  planet: BlueMoon Harmony
+  season: Lovers Heart
+
+紬:
+  id: 51
+  shortname: 紬
+  fullname: 白石紬
+  belong: Million Stars
+  type: Fairy Stars
+  planet: BlueMoon Harmony
+  season: Shade of Spade
+
+歌織:
+  id: 52
+  shortname: 歌織
+  fullname: 桜守歌織
+  belong: Million Stars
+  type: Angel Stars
+  planet: Sunshine Rhythm
+  season: Bright Diamond
